@@ -12,7 +12,7 @@ function git(args, capture = false) {
 }
 
 function checkAndBuild() {
-  const command = "npx --yes pnpm@9.14.4 check && npx --yes pnpm@9.14.4 build";
+  const command = "npx --yes pnpm@11.5.3 check && npx --yes pnpm@11.5.3 build";
   const result = process.platform === "win32"
     ? spawnSync("cmd.exe", ["/d", "/s", "/c", command], { stdio: "inherit" })
     : spawnSync("sh", ["-c", command], { stdio: "inherit" });

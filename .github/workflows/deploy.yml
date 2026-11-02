@@ -17,11 +17,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ENABLE_CONTENT_SYNC: 'false'
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.14.4
+          version: 11.5.3
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -38,6 +40,8 @@ jobs:
     if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    env:
+      ENABLE_CONTENT_SYNC: 'false'
     permissions:
       pages: write
       id-token: write

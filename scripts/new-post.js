@@ -26,7 +26,8 @@ const date = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai" }).for
 fileName ||= `${date}-${Date.now().toString(36)}`;
 if (!fileName.endsWith(".md")) fileName += ".md";
 const fullPath = path.resolve(postsDir, fileName);
-if (!fullPath.startsWith(postsDir) || path.isAbsolute(fileName)) {
+const relativePath = path.relative(postsDir, fullPath);
+if (relativePath.startsWith("..") || path.isAbsolute(relativePath) || path.isAbsolute(fileName)) {
   console.error("文章必须保存在 src/content/posts 目录内。");
   process.exit(1);
 }
